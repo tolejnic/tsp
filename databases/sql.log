@@ -1,0 +1,163 @@
+timestamp: 2011-09-25T04:42:45.851460
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512)
+);
+success!
+timestamp: 2011-09-25T04:42:46.048140
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2011-09-25T04:42:46.131239
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2011-09-25T04:42:46.235474
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2011-09-25T04:42:46.319393
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2011-09-25T04:42:46.437009
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    url CHAR(512),
+    uuid CHAR(512)
+);
+success!
+timestamp: 2012-08-15T16:24:25.205975
+ALTER TABLE auth_user ADD registration_id CHAR(512);
+timestamp: 2012-08-15T16:24:25.249551
+ALTER TABLE auth_cas ADD service CHAR(512);
+timestamp: 2012-08-15T16:24:25.251049
+ALTER TABLE auth_cas ADD renew CHAR(1);
+timestamp: 2012-08-15T16:24:25.252206
+ALTER TABLE auth_cas ADD ticket CHAR(512);
+timestamp: 2012-08-15T19:25:16.226394
+CREATE TABLE documents(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    file_name CHAR(512),
+    category CHAR(512),
+    file CHAR(512),
+    file_store BLOB
+);
+success!
+timestamp: 2012-09-05T16:31:17.096625
+CREATE TABLE parameters(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    city_file CHAR(512),
+    city_file_store BLOB,
+    move_operator CHAR(512),
+    max_iterations INTEGER,
+    algorithm CHAR(512),
+    start_temp INTEGER,
+    alpha DOUBLE
+);
+success!
+timestamp: 2012-09-05T16:48:12.455740
+ALTER TABLE parameters ADD verbose DOUBLE;
+timestamp: 2012-09-05T16:48:12.461945
+ALTER TABLE parameters ADD image_file_name CHAR(512);
+timestamp: 2012-09-05T18:20:23.439925
+CREATE TABLE clients(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    address CHAR(512),
+    phone_num CHAR(512),
+    lat DOUBLE,
+    lon DOUBLE
+);
+success!
+timestamp: 2012-09-05T19:40:35.021141
+ALTER TABLE parameters ADD image_file_store BLOB;
+timestamp: 2012-09-06T00:46:06.770892
+ALTER TABLE parameters ADD route BLOB;
+timestamp: 2012-09-06T00:46:06.793179
+CREATE TABLE routes(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    route BLOB
+);
+success!
+timestamp: 2012-09-06T22:09:05.109944
+ALTER TABLE parameters ADD created_on TIMESTAMP;
+timestamp: 2012-09-11T16:47:50.000598
+ALTER TABLE routes ADD route_data BLOB;
+timestamp: 2012-09-11T21:17:23.673270
+CREATE TABLE category(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    category CHAR(512)
+);
+success!
+timestamp: 2012-09-11T21:17:23.712594
+CREATE TABLE products(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(512),
+    category CHAR(512),
+    product_id CHAR(512),
+    description TEXT,
+    price1 DOUBLE,
+    price3_5 DOUBLE,
+    price7 DOUBLE,
+    price14 DOUBLE,
+    price28 DOUBLE,
+    created_on TIMESTAMP,
+    votes INTEGER,
+    picture CHAR(512),
+    picture_file BLOB
+);
+success!
+timestamp: 2012-09-11T21:20:25.741491
+CREATE TABLE orders(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    address CHAR(512),
+    price INTEGER,
+    created_on TIMESTAMP
+);
+success!
+timestamp: 2012-09-11T22:19:48.371350
+CREATE TABLE locations(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    lat DOUBLE,
+    lon DOUBLE
+);
+success!
+timestamp: 2012-09-12T15:17:35.443981
+CREATE TABLE addresses(
+    id INTEGER PRIMARY KEY AUTOINCREMENT
+);
+success!
+timestamp: 2012-09-12T15:18:15.677389
+ALTER TABLE addresses ADD address CHAR(512);
+timestamp: 2012-09-14T15:00:44.886348
+ALTER TABLE routes ADD best CHAR(512);
+timestamp: 2012-09-17T16:43:24.246483
+ALTER TABLE parameters ADD active CHAR(1);
+timestamp: 2012-09-17T16:52:44.465296
+ALTER TABLE addresses ADD active CHAR(1);

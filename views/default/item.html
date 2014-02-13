@@ -1,0 +1,11 @@
+{{extend 'layout.html'}}
+{{if item.elements("input[type=submit]"):}}
+    {{item.elements("input[type=submit]")[0].attributes['_class'] = 'btn primary'}}
+{{pass}}
+<div class="span14">
+{{=item}}
+<hr />
+<h3>{{=T("This is the full code to generate the above object")}}</h3>
+{{=code}}
+{{block sidebar}}{{end}}
+</div>

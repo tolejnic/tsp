@@ -1,0 +1,13 @@
+{{extend 'layout.html'}}
+<h1>Upload Documents</h1>
+<hr />
+<div class="floatLeft" style="width: 92.5%;">
+{{=upload}}
+
+{{=FORM(str(T('or import from csv file'))+" ",
+    INPUT(_type='file',_name='csvfile'),
+    INPUT(_type='hidden',_value='auth_user',_name='table'),
+    INPUT(_type='submit',_value='import')) 
+}} 
+
+</div>

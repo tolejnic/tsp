@@ -1,0 +1,7 @@
+{{extend 'layout.html'}}
+<h1>Administrative Interface</h1>
+{{=par_table}}
+
+{{=addr_table}}
+
+{{=route_table}}
